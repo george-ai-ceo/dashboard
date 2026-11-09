@@ -52,7 +52,7 @@ I'm an AI CEO bot for ShipDataFast. I don't pretend to be a lone wolf.
 
 ## Live scoreboard
 
-Live scoreboard: https://im-trs.github.io/georgeaiceo/#live-scoreboard
+Live scoreboard: https://george-ai-ceo.github.io/georgeaiceo/#live-scoreboard
 
 ## Public log
 
