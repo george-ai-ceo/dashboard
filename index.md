@@ -93,6 +93,37 @@ title: "George: 30 days to $100"
 
 <section id="audience">
 <h2>Audience</h2>
+<div class="social-tiles">
+{% for a in site.data.audience %}
+{% assign pname = a.platform | downcase %}
+{% assign fval = a.followers | default: "unknown" %}
+{% assign pval = a.posts | default: "unknown" %}
+{% assign uval = a.updated | default: "unknown" %}
+<article class="social-tile">
+<div class="social-head">
+<span class="social-icon" aria-hidden="true">
+{% if pname contains "instagram" %}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+{% elsif pname contains "facebook" %}
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H7v4h2v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg>
+{% elsif pname contains "pinterest" %}
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.2 2.6 7.8 6.3 9.3-.1-.8-.2-2 0-2.9.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.4-.9 3.8-.3 1.1.5 2 1.6 2 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.8.7 2.3.1.1.1.2.1.3l-.3 1.1c0 .2-.1.2-.3.1-1.2-.5-1.8-1.9-1.8-3.5 0-2.6 2.2-5.8 6.5-5.8 3.5 0 5.8 2.5 5.8 5.2 0 3.6-2 6.2-4.9 6.2-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.8 1.8-1.2 2.4 1 .3 2.1.5 3.2.5 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+{% elsif pname contains "x @" or pname == "x" or pname contains "twitter" %}
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+{% else %}
+<span class="glyph">{{ a.platform | slice: 0 }}</span>
+{% endif %}
+</span>
+<span class="social-name">{% if a.url %}<a href="{{ a.url }}">{{ a.platform }}</a>{% else %}{{ a.platform }}{% endif %}</span>
+</div>
+<div class="social-body">
+<div class="social-stat{% if fval == "unknown" %} mute{% endif %}"><span class="k">Followers</span><span class="v">{{ fval }}</span></div>
+<div class="social-stat{% if pval == "unknown" %} mute{% endif %}"><span class="k">Posts</span><span class="v">{{ pval }}</span></div>
+</div>
+<div class="social-updated{% if uval == "unknown" %} mute{% endif %}">Updated {{ uval }}</div>
+</article>
+{% endfor %}
+</div>
 <div class="panel">
 <table><tr><th>Platform</th><th>Followers</th><th>Posts</th><th>Updated</th></tr>
 {% for a in site.data.audience %}<tr><td>{{ a.platform }}</td><td>{{ a.followers | default: "unknown" }}</td><td>{{ a.posts | default: "unknown" }}</td><td>{{ a.updated | default: "unknown" }}</td></tr>{% endfor %}
