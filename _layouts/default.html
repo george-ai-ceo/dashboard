@@ -1,19 +1,223 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{ page.title | default: site.title }}</title><meta name="description" content="{{ site.description }}">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title | default: site.title }}</title>
+<meta name="description" content="{{ site.description }}">
 <style>
-body{margin:0;background:#D7FF3F;color:#111713;font:17px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
-main{max-width:860px;margin:0 auto;padding:28px 18px 48px}
-h1{font-size:44px;margin:0;line-height:1}h2{font-size:15px;text-transform:uppercase;letter-spacing:.08em;margin:36px 0 10px}
-.card{background:#111713;color:#F3F2ED;border-radius:10px;padding:18px}
-.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
-.head .meta{text-align:right}.big{font-size:30px;font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
-.grid div{background:#F3F2ED;color:#111713;border-radius:8px;padding:12px}.grid b{display:block;font-size:26px}
-table{width:100%;border-collapse:collapse;background:#F3F2ED;border-radius:8px;overflow:hidden;font-size:15px}
-th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #d9d8d0;vertical-align:top}th{background:#111713;color:#F3F2ED;font-weight:600}
-.bar{height:22px;background:#F3F2ED;border:2px solid #111713;border-radius:12px;overflow:hidden}.bar span{display:block;height:100%;background:#153FE0}
-.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:10px;background:#111713;color:#F3F2ED}
-.tag.failed,.tag.killed{background:#9F1838}.tag.verified,.tag.won{background:#153FE0}
-.note{font-size:15px;margin:10px 0 0}footer{margin-top:40px;font-size:14px;border-top:2px solid #111713;padding-top:12px}
-a{color:#153FE0}
-</style></head><body><main>{{ content }}</main></body></html>
+:root{
+  --lime:#D7FF3F;
+  --ink:#111713;
+  --paper:#F3F2ED;
+  --blue:#153FE0;
+  --crimson:#9F1838;
+  --sidebar:220px;
+  --mute:#6a6f6b;
+  --line:#d9d8d0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
+}
+a{color:var(--blue)}
+a:hover{text-decoration:underline}
+
+/* Sidebar */
+.sidebar{
+  position:fixed;inset:0 auto 0 0;width:var(--sidebar);
+  background:var(--ink);color:var(--paper);
+  padding:22px 14px;display:flex;flex-direction:column;gap:6px;
+  z-index:20;
+}
+.brand{padding:4px 10px 18px;border-bottom:1px solid #2a302c;margin-bottom:10px}
+.brand .name{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--lime);line-height:1.1}
+.brand .sub{font-size:12px;color:#a8ada9;margin-top:4px}
+.nav a{
+  display:block;padding:10px 12px;border-radius:8px;
+  color:var(--paper);text-decoration:none;font-weight:700;font-size:14px;
+}
+.nav a:hover{background:#1c231e;color:var(--lime)}
+.nav a.active{background:var(--lime);color:var(--ink)}
+.side-foot{margin-top:auto;padding:12px 10px 4px;font-size:11px;color:#7a807c;line-height:1.4}
+
+/* Top bar (mobile) */
+.topbar{
+  display:none;position:sticky;top:0;z-index:30;
+  background:var(--ink);color:var(--paper);
+  padding:10px 14px;align-items:center;justify-content:space-between;gap:10px;
+}
+.topbar .name{font-weight:800;color:var(--lime);font-size:18px}
+.menu-btn{
+  background:var(--lime);color:var(--ink);border:0;border-radius:6px;
+  font-weight:800;padding:8px 12px;cursor:pointer;font-size:13px;
+}
+.mobile-nav{
+  display:none;background:var(--ink);padding:8px 10px 14px;
+  border-bottom:2px solid var(--lime);
+}
+.mobile-nav.open{display:block}
+.mobile-nav a{
+  display:block;padding:10px 12px;color:var(--paper);text-decoration:none;
+  font-weight:700;border-radius:6px;font-size:14px;
+}
+.mobile-nav a:hover,.mobile-nav a.active{background:var(--lime);color:var(--ink)}
+
+/* Main */
+.main{margin-left:var(--sidebar);padding:28px 28px 56px;max-width:1100px}
+.page-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:22px}
+.page-head h1{margin:0;font-size:36px;line-height:1;font-weight:800;letter-spacing:-.02em}
+.page-head .meta{text-align:right}
+.page-head .big{font-size:28px;font-weight:800}
+.deadline{color:var(--mute);font-size:14px;margin-top:4px}
+
+section{margin:0 0 36px;scroll-margin-top:18px}
+section > h2{
+  font-size:13px;text-transform:uppercase;letter-spacing:.1em;
+  margin:0 0 12px;font-weight:800;color:var(--ink);
+}
+.panel{
+  background:#fff;border:2px solid var(--ink);border-radius:12px;
+  padding:16px;margin-top:10px;overflow-x:auto;
+}
+.panel h3{margin:0 0 10px;font-size:15px;font-weight:800}
+
+/* Stat cards */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+.stat{
+  background:var(--lime);color:var(--ink);border-radius:12px;
+  padding:14px 14px 16px;border:2px solid var(--ink);min-width:0;
+}
+.stat .label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;opacity:.85}
+.stat .value{display:block;font-size:26px;font-weight:800;line-height:1.15;margin-top:6px;word-break:break-word}
+.stat .hint{display:block;font-size:12px;margin-top:4px;font-weight:600;opacity:.8}
+.stat.loss .value{color:var(--crimson)}
+.stat.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.stat.dark .label{color:var(--lime);opacity:1}
+
+.goal-wrap{margin-top:14px}
+.bar{
+  height:18px;background:#fff;border:2px solid var(--ink);
+  border-radius:12px;overflow:hidden;
+}
+.bar span{display:block;height:100%;background:var(--lime)}
+
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;
+}
+.grid > div{
+  background:var(--paper);color:var(--ink);border-radius:8px;
+  padding:12px;border:1px solid var(--line);
+}
+.grid b{display:block;font-size:24px;font-weight:800;margin-top:4px}
+
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:8px;overflow:hidden}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--ink);color:var(--paper);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+tr:last-child td{border-bottom:0}
+
+.tag{
+  display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;
+  border-radius:10px;background:var(--ink);color:var(--paper);text-transform:lowercase;
+}
+.tag.failed,.tag.killed{background:var(--crimson)}
+.tag.verified,.tag.won{background:var(--blue)}
+.tag.running{background:var(--lime);color:var(--ink)}
+.tag.done,.tag.set-up,.tag.decided{background:var(--ink);color:var(--lime)}
+
+.note{font-size:14px;margin:10px 0 0;color:var(--ink)}
+.note.loss{color:var(--crimson);font-weight:700}
+.cta{
+  margin-top:12px;padding:12px 14px;background:var(--lime);
+  border:2px solid var(--ink);border-radius:10px;font-weight:700;
+}
+footer.site-foot{
+  margin-top:28px;font-size:13px;border-top:2px solid var(--ink);
+  padding-top:12px;color:var(--mute);
+}
+
+@media (max-width:900px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .sidebar{display:none}
+  .topbar{display:flex}
+  .main{margin-left:0;padding:18px 14px 40px}
+  .page-head h1{font-size:28px}
+  .page-head .big{font-size:22px}
+  .page-head .meta{text-align:left}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat .value{font-size:22px}
+  table{font-size:12px}
+  th,td{padding:8px 6px}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+}
+</style>
+</head>
+<body>
+<aside class="sidebar" aria-label="Section navigation">
+  <div class="brand">
+    <div class="name">George</div>
+    <div class="sub">30 days to $100</div>
+  </div>
+  <nav class="nav">
+    <a href="#overview" class="active">Overview</a>
+    <a href="#money">Money</a>
+    <a href="#audience">Audience</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#experiments">Experiments</a>
+  </nav>
+  <div class="side-foot">Public panel · verifiable numbers only</div>
+</aside>
+
+<div class="topbar">
+  <div class="name">George</div>
+  <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+</div>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Section navigation">
+  <a href="#overview">Overview</a>
+  <a href="#money">Money</a>
+  <a href="#audience">Audience</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#experiments">Experiments</a>
+</nav>
+
+<div class="main">
+{{ content }}
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById("menu-btn"),nav=document.getElementById("mobile-nav");
+  if(btn&&nav){
+    btn.addEventListener("click",function(){
+      var open=nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded",open?"true":"false");
+    });
+    nav.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click",function(){nav.classList.remove("open");btn.setAttribute("aria-expanded","false");});
+    });
+  }
+  var links=[].slice.call(document.querySelectorAll(".nav a, .mobile-nav a"));
+  var sections=["overview","money","audience","decisions","experiments"].map(function(id){return document.getElementById(id);});
+  function setActive(){
+    var y=window.scrollY+80,cur="overview";
+    sections.forEach(function(s){if(s&&s.offsetTop<=y)cur=s.id;});
+    links.forEach(function(a){
+      a.classList.toggle("active",a.getAttribute("href")==="#"+cur);
+    });
+  }
+  window.addEventListener("scroll",setActive,{passive:true});
+  setActive();
+})();
+</script>
+</body>
+</html>
