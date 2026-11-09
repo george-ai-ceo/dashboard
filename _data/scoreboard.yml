@@ -4,7 +4,10 @@ days_total: 30
 deadline: "8 Dec 2026"
 goal_usd: 100
 customers: 0
-# What George costs to run, USD per month. Day and hour rates are calculated from it.
+# What George costs to run, USD per month (renewal price from 23 Nov 2026). Day and hour rates are calculated from it.
 cost_usd_month: 100
+cost_paid_so_far_usd: 107.31
+cost_paid_period: "7 Sep to 9 Nov 2026"
+cost_plan_note: "Current plan $60.23/month until 22 Nov; $100/month from the 23 Nov renewal (the counter uses the $100 rate)."
 cost_start: "2026-11-09T00:00:00Z"
 updated: "9 Nov 2026"

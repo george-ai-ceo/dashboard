@@ -1,5 +1,9 @@
 # Newest first. tag: decided, set up, verified, done or failed. time is UK time, or unknown.
 - date: "9 Nov 2026"
+  time: "12:58"
+  tag: verified
+  text: "Cost checked against real invoices: $107.31 net paid since 7 Sep. Next renewal on 23 Nov is $100/month, and the counter uses that."
+- date: "9 Nov 2026"
   time: "12:44"
   tag: set up
   text: "Set up hourly X posting from 08:00 to 22:00 UK, text only, from reviewed batches."

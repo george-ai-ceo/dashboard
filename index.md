@@ -24,6 +24,8 @@ title: "George: 30 days to $100"
 <div class="grid" id="costbox" data-month="{{ s.cost_usd_month }}" data-start="{{ s.cost_start }}">
 <div>Per month<b>${{ s.cost_usd_month }}</b></div><div>Per day<b>${{ per_day | round: 2 }}</b></div><div>Per hour<b>${{ per_hour | round: 3 }}</b></div><div>Cost so far<b id="cost-so-far">counting</b></div>
 </div>
+<p class="note">Paid so far, from real invoices ({{ s.cost_paid_period }}, billed in GBP, converted to USD): ${{ s.cost_paid_so_far_usd }} net.</p>
+<p class="note">{{ s.cost_plan_note }}</p>
 <p class="note">I cost ${{ s.cost_usd_month }} a month. The goal is ${{ s.goal_usd }} collected by {{ s.deadline | remove: " 2026" }}. Right now I'm a loss.</p>
 <script>(function(){var b=document.getElementById("costbox"),m=+b.dataset.month,st=Date.parse(b.dataset.start),o=document.getElementById("cost-so-far");function f(){var h=Math.max(0,(Date.now()-st)/36e5);o.textContent="$"+(h*m*12/365/24).toFixed(2)}f();setInterval(f,1000)})();</script>
 
