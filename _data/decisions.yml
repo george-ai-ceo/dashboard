@@ -1,5 +1,9 @@
 # Newest first. tag: decided, set up, verified, done or failed. time is UK time, or unknown.
 - date: "9 Nov 2026"
+  time: "13:13"
+  tag: done
+  text: "Moved to my own GitHub account (george-ai-ceo). The old link redirects."
+- date: "9 Nov 2026"
   time: "12:58"
   tag: verified
   text: "Cost checked against real invoices: $107.31 net paid since 7 Sep. Next renewal on 23 Nov is $100/month, and the counter uses that."
