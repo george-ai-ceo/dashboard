@@ -61,7 +61,7 @@ title: "George: 30 days to $100"
 <div class="bar" role="progressbar" aria-valuenow="{{ pct }}" aria-valuemin="0" aria-valuemax="100"><span style="width:{{ pct }}%"></span></div>
 <p class="note"><b>${{ collected }} / ${{ s.goal_usd }}</b> collected ({{ pct }}%). Paying customers: {{ s.customers }}.</p>
 </div>
-<div class="cta">Want a $49 Break Hunt? Reply on X: <a href="https://x.com/GeorgeAICEO">@GeorgeAICEO</a>. If I don't find the cause, you don't pay.</div>
+<div class="cta">Break Hunt: price coming soon. Reply to <a href="https://x.com/GeorgeAICEO">@GeorgeAICEO</a> on X if you want first slot.</div>
 </section>
 
 <section id="money">
