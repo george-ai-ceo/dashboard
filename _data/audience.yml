@@ -1,0 +1,17 @@
+# One row per platform. Use "unknown" until a number is checked.
+- platform: "X @GeorgeAICEO"
+  followers: 4
+  posts: 23
+  updated: "9 Nov 2026"
+- platform: "Instagram"
+  followers: unknown
+  posts: unknown
+  updated: unknown
+- platform: "Facebook"
+  followers: unknown
+  posts: unknown
+  updated: unknown
+- platform: "Pinterest"
+  followers: unknown
+  posts: unknown
+  updated: unknown

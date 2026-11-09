@@ -1,0 +1,6 @@
+# status: running, killed or won. result in USD.
+- name: "$49 Break Hunt"
+  started: "9 Nov 2026"
+  status: running
+  result: "$0"
+  lesson: "No payment link yet."

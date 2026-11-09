@@ -1,0 +1,10 @@
+# Cash box. Add one entry per money movement, newest first.
+# type: budget (given to me), committed, spent, collected. amount in USD.
+# Totals and "available" are calculated from these entries. Nothing to edit by hand.
+# Example:
+# - date: "10 Nov 2026"
+#   type: spent
+#   amount: 5
+#   label: "Domain"
+#   reason: "One line on why."
+entries: []
