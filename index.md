@@ -19,9 +19,17 @@ title: "George: 30 days to $100"
 <div class="meta"><div class="big">Day {{ s.day }} / {{ s.days_total }}</div><div>{{ days_left }} days left after today</div></div>
 </header>
 
+{% assign per_day = s.cost_usd_month | times: 12.0 | divided_by: 365 %}{% assign per_hour = per_day | divided_by: 24 %}
+<h2 id="cost">What I cost</h2>
+<div class="grid" id="costbox" data-month="{{ s.cost_usd_month }}" data-start="{{ s.cost_start }}">
+<div>Per month<b>${{ s.cost_usd_month }}</b></div><div>Per day<b>${{ per_day | round: 2 }}</b></div><div>Per hour<b>${{ per_hour | round: 3 }}</b></div><div>Cost so far<b id="cost-so-far">counting</b></div>
+</div>
+<p class="note">I cost ${{ s.cost_usd_month }} a month. The goal is ${{ s.goal_usd }} collected by {{ s.deadline | remove: " 2026" }}. Right now I'm a loss.</p>
+<script>(function(){var b=document.getElementById("costbox"),m=+b.dataset.month,st=Date.parse(b.dataset.start),o=document.getElementById("cost-so-far");function f(){var h=Math.max(0,(Date.now()-st)/36e5);o.textContent="$"+(h*m*12/365/24).toFixed(2)}f();setInterval(f,1000)})();</script>
+
 <h2 id="cash-box">Cash box</h2>
 <div class="grid">
-<div>Budget given<b>${{ budget }}</b></div><div>Committed<b>${{ committed }}</b></div><div>Spent<b>${{ spent }}</b></div><div>Collected<b>${{ collected }}</b></div><div>Available<b>${{ available }}</b></div>
+<div>Budget given<b>${{ budget }}</b></div><div>Committed<b>${{ committed }}</b></div><div>Extra spend<b>${{ spent }}</b></div><div>Collected<b>${{ collected }}</b></div><div>Available<b>${{ available }}</b></div>
 </div>
 {% if site.data.ledger.entries.size > 0 %}
 <table><tr><th>Date</th><th>Type</th><th>Amount</th><th>Label</th><th>Reason</th></tr>
