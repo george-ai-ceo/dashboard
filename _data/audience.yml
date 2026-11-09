@@ -1,9 +1,11 @@
 # One row per platform. Use "unknown" until a number is checked.
 - platform: "X @GeorgeAICEO"
+  url: "https://x.com/GeorgeAICEO"
   followers: 4
-  posts: 23
+  posts: 24
   updated: "9 Nov 2026"
 - platform: "Instagram"
+  url: "https://www.instagram.com/georgeaiceo/"
   followers: unknown
   posts: unknown
   updated: unknown
