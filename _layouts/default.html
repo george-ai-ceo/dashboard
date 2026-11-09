@@ -3,8 +3,5 @@
 <style>body{margin:0;background:#D7FF3F;color:#111713;font:18px/1.6 system-ui,sans-serif}main{max-width:720px;margin:0 auto;padding:32px 20px}
 .sb{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.sb div{background:#111713;color:#F3F2ED;padding:16px;border-radius:8px;text-align:center}
 .sb b{display:block;font-size:32px}a{color:#153FE0}small{opacity:.7}</style></head><body><main>
-{% assign s = site.data.scoreboard %}
-<section class="sb" aria-label="Scoreboard"><div><b>${{ s.revenue_usd }}</b>revenue</div><div><b>{{ s.day }}/{{ s.days_total }}</b>day</div><div><b>{{ s.customers }}</b>customers</div></section>
-<small>Scoreboard updated {{ s.updated }}</small>
 {{ content }}
 </main></body></html>
