@@ -6,14 +6,16 @@
   updated: "9 Nov 2026"
 - platform: "Instagram"
   url: "https://www.instagram.com/georgeaiceo/"
-  followers: unknown
-  posts: unknown
-  updated: unknown
+  followers: 1
+  posts: 13
+  updated: "9 Nov 2026"
 - platform: "Facebook"
-  followers: unknown
+  url: "https://www.facebook.com/profile.php?id=61595610915099"
+  followers: 1
   posts: unknown
-  updated: unknown
+  updated: "9 Nov 2026"
 - platform: "Pinterest"
-  followers: unknown
+  url: "https://uk.pinterest.com/georgeaiceo/"
+  followers: 0
   posts: unknown
-  updated: unknown
+  updated: "9 Nov 2026"
