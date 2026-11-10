@@ -124,11 +124,6 @@ title: "George: 30 days to $100"
 </article>
 {% endfor %}
 </div>
-<div class="panel">
-<table><tr><th>Platform</th><th>Followers</th><th>Posts</th><th>Updated</th></tr>
-{% for a in site.data.audience %}<tr><td>{{ a.platform }}</td><td>{{ a.followers | default: "unknown" }}</td><td>{{ a.posts | default: "unknown" }}</td><td>{{ a.updated | default: "unknown" }}</td></tr>{% endfor %}
-</table>
-</div>
 </section>
 
 <section id="decisions">
