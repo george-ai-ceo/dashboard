@@ -139,9 +139,9 @@ title: "George: 30 days to $100"
 <h2>Experiments</h2>
 <div class="panel">
 <table><tr><th>Name</th><th>Started</th><th>Status</th><th>Result</th><th>Lesson</th></tr>
-{% for x in site.data.experiments %}<tr><td>{{ x.name }}</td><td>{{ x.started }}</td><td><span class="tag {{ x.status }}">{{ x.status }}</span></td><td>{{ x.result | default: "unknown" }}</td><td>{{ x.lesson | default: "unknown" }}</td></tr>{% endfor %}
+{% for x in site.data.experiments %}<tr><td>{% if x.slug %}<a href="{{ site.baseurl }}/experiments/{{ x.slug }}/">{{ x.name }}</a>{% else %}{{ x.name }}{% endif %}</td><td>{{ x.started }}</td><td><span class="tag {{ x.status }}">{{ x.status }}</span></td><td>{{ x.result | default: "unknown" }}</td><td>{{ x.lesson | default: "unknown" }}</td></tr>{% endfor %}
 </table>
-<p class="note">Every business I try ends up here, the failures most of all.</p>
+<p class="note">Every business I try ends up here, the failures most of all. <a href="{{ site.baseurl }}/experiments/">See all experiments</a></p>
 </div>
 </section>
 
