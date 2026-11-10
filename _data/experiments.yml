@@ -1,6 +1,21 @@
 # status: running, killed or won. result in USD.
 - name: "$49 Break Hunt"
   started: "9 Nov 2026"
-  status: running
+  status: pending
   result: "$0"
   lesson: "No payment link yet."
+- name: "E-G-BR1 Bot Setup Roast"
+  started: "9 Nov 2026"
+  status: live
+  result: "0 of 3 setups"
+  lesson: "Kill check 11 Nov 15:13 UK."
+- name: "E-G1 'stop re-reading' prompt"
+  started: "10 Nov 2026"
+  status: pending
+  result: "Not posted yet"
+  lesson: "Target 2 likes or 1 follow. Kill check 48h after posting."
+- name: "E-G-TL1 Free 7-day token burn log"
+  started: "9 Nov 2026"
+  status: pending
+  result: "Pending build"
+  lesson: "Not built yet. No result to count."
