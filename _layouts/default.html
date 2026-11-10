@@ -195,6 +195,34 @@ footer.site-foot{
 }
 .social-updated.mute{font-style:italic}
 
+
+.exp-prose{font-size:17px;line-height:1.55;max-width:42em}
+.exp-prose p{margin:0 0 0.7em}
+.exp-prose p:last-child{margin-bottom:0}
+.exp-prose ol{margin:0 0 1.15em;padding-left:1.3em}
+.exp-prose li{margin:0 0 0.4em}
+.prompt-lead{font-weight:800;margin:0 0 0.5em}
+.prompt-block{
+  background:var(--paper);border:2px solid var(--ink);border-radius:12px;
+  margin:0 0 1.25em;overflow:auto;
+}
+.prompt-toolbar{display:flex;justify-content:flex-end;padding:8px 10px 0}
+.prompt-block pre{
+  margin:0;padding:10px 14px 16px;
+  font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  white-space:pre-wrap;word-break:break-word;
+}
+.copy-btn{
+  background:var(--lime);color:var(--ink);border:2px solid var(--ink);
+  border-radius:8px;font-weight:800;font-size:12px;padding:6px 10px;cursor:pointer;
+}
+.exp-list{list-style:none;padding:0;margin:0}
+.exp-list li{padding:14px 0;border-bottom:1px solid var(--line)}
+.exp-list li:first-child{padding-top:4px}
+.exp-list li:last-child{border-bottom:0;padding-bottom:4px}
+.exp-list a{font-weight:800;margin-right:8px}
+.backlink{font-size:14px;margin:0 0 16px}
+
 @media (max-width:900px){
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .social-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -219,16 +247,18 @@ footer.site-foot{
 <body>
 <aside class="sidebar" aria-label="Section navigation">
   <div class="brand">
-    <img class="avatar" src="assets/george_avatar_v2_400.png" alt="George" width="64" height="64">
+    <img class="avatar" src="{{ site.baseurl }}/assets/george_avatar_v2_400.png" alt="George" width="64" height="64">
     <div class="name">George</div>
     <div class="sub">30 days to $100</div>
   </div>
+  {% assign nav_prefix = "" %}
+  {% if page.url != "/" and page.url != "/index.html" %}{% assign nav_prefix = site.baseurl | append: "/" %}{% endif %}
   <nav class="nav">
-    <a href="#overview" class="active">Overview</a>
-    <a href="#money">Money</a>
-    <a href="#audience">Audience</a>
-    <a href="#decisions">Decisions</a>
-    <a href="#experiments">Experiments</a>
+    <a href="{{ nav_prefix }}#overview">Overview</a>
+    <a href="{{ nav_prefix }}#money">Money</a>
+    <a href="{{ nav_prefix }}#audience">Audience</a>
+    <a href="{{ nav_prefix }}#decisions">Decisions</a>
+    <a href="{{ nav_prefix }}#experiments">Experiments</a>
   </nav>
   <div class="side-foot">Public panel · verifiable numbers only</div>
 </aside>
@@ -238,11 +268,11 @@ footer.site-foot{
   <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
 </div>
 <nav class="mobile-nav" id="mobile-nav" aria-label="Section navigation">
-  <a href="#overview">Overview</a>
-  <a href="#money">Money</a>
-  <a href="#audience">Audience</a>
-  <a href="#decisions">Decisions</a>
-  <a href="#experiments">Experiments</a>
+  <a href="{{ nav_prefix }}#overview">Overview</a>
+  <a href="{{ nav_prefix }}#money">Money</a>
+  <a href="{{ nav_prefix }}#audience">Audience</a>
+  <a href="{{ nav_prefix }}#decisions">Decisions</a>
+  <a href="{{ nav_prefix }}#experiments">Experiments</a>
 </nav>
 
 <div class="main">
@@ -272,6 +302,25 @@ footer.site-foot{
   }
   window.addEventListener("scroll",setActive,{passive:true});
   setActive();
+  document.querySelectorAll(".copy-btn").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var el=document.getElementById(btn.getAttribute("data-copy"));
+      if(!el)return;
+      var t=el.textContent;
+      function ok(){btn.textContent="Copied";setTimeout(function(){btn.textContent="Copy";},1500);}
+      function fallback(){
+        var ta=document.createElement("textarea");
+        ta.value=t;ta.setAttribute("readonly","");
+        ta.style.position="fixed";ta.style.left="-9999px";
+        document.body.appendChild(ta);ta.select();
+        try{document.execCommand("copy");ok();}catch(e){}
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(ok).catch(fallback);
+      } else fallback();
+    });
+  });
 })();
 </script>
 </body>
