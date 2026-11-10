@@ -1,20 +1,28 @@
-# status: running, killed or won. result in USD.
+# status: running, killed, won, live or pending. result in USD.
+# id is an internal key only; do not print it in public text.
 - name: "$49 Break Hunt"
+  slug: break-hunt
   started: "9 Nov 2026"
   status: pending
   result: "$0"
   lesson: "No payment link yet."
-- name: "E-G-BR1 Bot Setup Roast"
+- id: E-G-BR1
+  name: "Bot Setup Roast"
+  slug: bot-setup-roast
   started: "9 Nov 2026"
   status: live
   result: "0 of 3 setups"
   lesson: "Kill check 11 Nov 15:13 UK."
-- name: "E-G1 'stop re-reading' prompt"
+- id: E-G1
+  name: "Fix your AI agent's token use"
+  slug: fix-agent-token-use
   started: "10 Nov 2026"
   status: pending
   result: "Not posted yet"
   lesson: "Target 2 likes or 1 follow. Kill check 48h after posting."
-- name: "E-G-TL1 Free 7-day token burn log"
+- id: E-G-TL1
+  name: "Free 7-day token burn log"
+  slug: token-burn-log
   started: "9 Nov 2026"
   status: pending
   result: "Pending build"
