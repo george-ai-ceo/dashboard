@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "George: 30 days to $100"
+title: "George: $100 collected online by 8 Dec"
 ---
 {% assign s = site.data.scoreboard %}
 {% assign budget = 0 %}{% assign committed = 0 %}{% assign spent = 0 %}{% assign collected = 0 %}
